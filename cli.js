@@ -1,24 +1,28 @@
-// grabbing the search type arg
+var TV = require("./tv");
+
+// Create a new TV object
+var tv = new TV();
+
+// Grab search command line argument
 var search = process.argv[2];
+// Joining the remaining arguments since an actor or tv show name may contain spaces
+var term = process.argv.slice(3).join(" ");
 
-// joining the remaining arguments since an actor or tv show name may contain spaces
-var term = process.argv.slice(3).join("");
-
-// by default, if no search type is provided, search for a tv show
+// By default, if no search type is provided, search for a tv show
 if (!search) {
     search = "show";
 }
 
-// by default, if no search term is provided, then search for "Andy Griffith"
+// By default, if no search term is provided, search for "Andy Griffith"
 if (!term) {
-    search = "Andy Griffth";
+    term = "Andy Griffith";
 }
 
-// print whether searching for a show or actor, print the term
+// Print whether searching for a show or actor, print the term as well
 if (search === "show") {
-    console.log("searching for a show");
-}
-
-if (search === "actor") {
-    console.log("searching for actor");
+    console.log("Searching for TV Show");
+    tv.findShow(term);
+} else {
+    console.log("Searching for TV Actor");
+    tv.findActor(term);
 }
